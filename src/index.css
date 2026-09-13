@@ -1,0 +1,192 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Playfair Display", "Cormorant Garamond", Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-classic: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+html {
+  font-family: var(--font-sans);
+  color-scheme: dark;
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+html.light {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Responsive Hero Orbital System Variables */
+.hero-orbit-stage {
+  --photo-size: clamp(200px, 50vw, 250px);
+  --orbit-offset: 26px;
+  --orbit-radius: calc((var(--photo-size) / 2) + var(--orbit-offset));
+}
+
+@media (min-width: 640px) {
+  .hero-orbit-stage {
+    --photo-size: clamp(250px, 36vw, 300px);
+    --orbit-offset: 30px;
+    --orbit-radius: calc((var(--photo-size) / 2) + var(--orbit-offset));
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-orbit-stage {
+    --photo-size: clamp(290px, 24vw, 380px);
+    --orbit-offset: 35px;
+    --orbit-radius: calc((var(--photo-size) / 2) + var(--orbit-offset));
+  }
+}
+
+@media (min-width: 1440px) {
+  .hero-orbit-stage {
+    --photo-size: clamp(340px, 24vw, 420px);
+    --orbit-offset: 38px;
+    --orbit-radius: calc((var(--photo-size) / 2) + var(--orbit-offset));
+  }
+}
+
+/* Smooth, Slow, Continuous Planetary Orbit Animations */
+@keyframes hero-orbit-cloud {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg) translateX(var(--orbit-radius)) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg) translateX(var(--orbit-radius)) rotate(-360deg);
+  }
+}
+
+@keyframes hero-orbit-devops {
+  0% {
+    transform: translate(-50%, -50%) rotate(120deg) translateX(var(--orbit-radius)) rotate(-120deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(480deg) translateX(var(--orbit-radius)) rotate(-480deg);
+  }
+}
+
+@keyframes hero-orbit-support {
+  0% {
+    transform: translate(-50%, -50%) rotate(240deg) translateX(var(--orbit-radius)) rotate(-240deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(600deg) translateX(var(--orbit-radius)) rotate(-600deg);
+  }
+}
+
+.orbit-cloud {
+  animation: hero-orbit-cloud 34s linear infinite;
+  will-change: transform;
+}
+
+.orbit-devops {
+  animation: hero-orbit-devops 34s linear infinite;
+  will-change: transform;
+}
+
+.orbit-support {
+  animation: hero-orbit-support 34s linear infinite;
+  will-change: transform;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0b111e;
+}
+
+html.light ::-webkit-scrollbar-track {
+  background: #FAF9F5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+
+html.light ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Smooth Infinite Horizontal Ticker Animation */
+@keyframes ticker-marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-ticker {
+  display: flex;
+  width: max-content;
+  animation: ticker-marquee 65s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-ticker {
+    animation: none !important;
+  }
+
+  .orbit-cloud {
+    transform: translate(-50%, -50%) rotate(0deg) translateX(var(--orbit-radius)) rotate(0deg) !important;
+    animation: none !important;
+  }
+  .orbit-devops {
+    transform: translate(-50%, -50%) rotate(120deg) translateX(var(--orbit-radius)) rotate(-120deg) !important;
+    animation: none !important;
+  }
+  .orbit-support {
+    transform: translate(-50%, -50%) rotate(240deg) translateX(var(--orbit-radius)) rotate(-240deg) !important;
+    animation: none !important;
+  }
+}
+
